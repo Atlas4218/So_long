@@ -1,0 +1,61 @@
+
+
+
+
+
+
+
+
+char *get_next_line(fd)
+{
+	static char **buff = malloc(FOPEN_MAX * sizeof(char *))
+	char *temp
+	char *add
+	//part 0 initialisation
+	if (!buff[fd])
+		buff[fd] = malloc(BUFFER)
+	else if(!*buff[fd])
+	{
+		free(buff[fd])
+		buff[fd] = malloc(BUFFER)
+		read(fd, buff[fd], BUFFER)
+	}//part 1 (recuperation du \n)
+	while (!strchr(buff[fd], \n))
+	{
+		temp = buff[fd]
+		add = malloc(buffer)
+		if (read(fd, add, BUFFER) < 0)
+			return (null)
+		buff[fd] = strjoin(temp, add)
+		if (!*buff[fd])
+			return strdup("NULL")
+		free(temp)
+		free(add)
+	}
+	return (part2(buff, fd))
+}
+
+
+char *gnl_part_two(buff, fd)
+{// part 2 (creation du resultat)
+	result
+	temp
+
+	result = substr(buff[fd], 0, strchr(buff[fd], \n)-buff[fd])
+	temp = buff[fd]
+	buff[fd] = strdup(strchr(temp, \n)+1)
+	return free(temp),result
+}
+
+strchr
+
+strjoin
+	strlcpy
+	strlcat (strlcpy avec un decalage)
+strdup
+	strlcpy
+substr
+	strlcpy
+
+strlcpy
+

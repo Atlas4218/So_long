@@ -1,0 +1,2 @@
+player image addr = 788f0
+nplayer image addr = 7ca80

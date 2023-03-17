@@ -1,0 +1,52 @@
+verifier la validite de la carte
+	verifier l'extension du fichier (.ber) OK
+		si les 4 derniers characteres sont
+	verifier la taille et forme de la carte OK
+		taille
+			3 colonnes ou plus
+			3 lignes ou plus
+		forme
+			toutes les lignes de la meme taille
+	verifier la presence de chaque element constituant la carte OK 
+		Mur: 1 (premiere ligne, ou premiere colonne, ou derniere ligne/colonne)
+		Vide : 0
+		Joueur : P (1 joueurs ni plus ni moins)
+		Collectible : C (au moins 1)
+		Sortie : E (1 sortie ni plus ni moins)
+		
+	verifier le fait qu'elle puisse etre resolue OK
+		porte considere comme un mur
+		remplissage partant du joueur
+			si la/les cases adjacentes sont vides ou des pieces, on remplis et on remplace les collectibles (R, S pour la sortie ou V pour les pieces) et on repete en cascade
+		a la fin, on cherche la presence de piece (C) et la sortie (E) (on ne peux pas les atteindre)
+	
+construire la carte
+	placer le fond (grille avec le tuilles de sol)
+		detruire l'image apres utilisation 
+	placer les elements fixes (creer des sprites selon l'element a placer (mur,collectible, sortie))
+		detruire l'image apres utilisation?
+	placer les elements mobiles(joueur)
+
+jeu lance
+
+deplacement
+	ne pas se prendre de mur
+		si la case sur laquelle le deplacement est prevu est un mur, empecher le deplacement
+	recuperer les pieces
+		si les coordonnes du joueurs vont devenir celles d'une piece
+		reduire le compteur de piece de 1
+		(map[player.x/player.img.width][player.y/player.img.height] == V)
+			move(render, render background)
+			nbcoll--
+		l'image de la piece sera ecrasee
+	si le deplacement est reussi
+		augmenter le compteur de pas de 1
+
+mechaniques
+	sortie
+		ouverture quand le compteur de piece restante atteint 0 (si il n'y a plus de piece a attraper)
+		(map[player.x/player.img.width][player.y/player.img.height] == S)
+			if (!nbcoll)
+				move (render, render background)
+				exit
+				
