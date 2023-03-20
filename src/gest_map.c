@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:54:27 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/17 14:35:19 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/20 20:46:39 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -75,20 +75,6 @@ int	solve_map(char **map, t_vars *vars)
 {
 	if (!vars || !map || !*map)
 		return (5);
-	vars->player->y = 0;
-	while (map[vars->player->y])
-	{
-		vars->player->x = 0;
-		while (map[vars->player->y][vars->player->x])
-		{
-			if (map[vars->player->y][vars->player->x] == 'P')
-				break ;
-			vars->player->x++;
-		}
-		if (map[vars->player->y][vars->player->x] == 'P')
-			break ;
-		vars->player->y++;
-	}
 	fill_map(0, map, vars->player->y, vars->player->x);
 	while (*map)
 	{
@@ -122,5 +108,5 @@ int	parse_map(char **map, t_vars *vars)
 		return (printf(WALLERROR));
 	if (!vars->nbcoin || vars->nbplayer != 1 || vars->nbexit != 1)
 		return (printf(NUMBERERROR));
-	return (solve_map(map, vars));
+	return (0);
 }

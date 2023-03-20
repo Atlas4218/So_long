@@ -1,2 +1,5 @@
 player image addr = 788f0
 nplayer image addr = 7ca80
+
+coordonees du joueur demande la taille de l'ecran et l'offset
+l'offset demande la carte
