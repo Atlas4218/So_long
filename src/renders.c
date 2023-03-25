@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:25:56 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/17 15:39:14 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/25 19:19:07 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -16,7 +16,7 @@ int	render_sprite(t_vars *vars, t_sprite *sprite)
 	if (!sprite || !(sprite->img) || !vars || !(vars->mlx) || !(vars->win))
 		return (1);
 	mlx_put_image_to_window(vars->mlx, vars->win, sprite->img,
-		sprite->x, sprite->y);
+		sprite->y, sprite->x);
 	return (0);
 }
 
@@ -72,4 +72,5 @@ void	render_room(t_vars *vars)
 {
 	render_background(vars);
 	render_elements(vars, vars->offsetx, vars->offsety);
+	render_sprite(vars, vars->player, vars->player->x, vars->player->y);
 }

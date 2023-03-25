@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 18:19:57 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/20 15:26:39 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/23 20:46:36 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -48,7 +48,7 @@ void	get_offset(t_vars *vars)
 		while (vars->map[vars->offsetx]
 			[vars->offsety])
 		{
-			if (player_in_window(vars) )
+			if (player_in_window(vars))
 				return ;
 			vars->offsety++;
 		}

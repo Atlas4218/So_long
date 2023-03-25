@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:32:48 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/17 14:30:36 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/22 14:29:51 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	main(int ac, char **av)
 	}
 	vars.mappath = av[1];
 	if (init_vars(&vars))
-		return (-1);
+		return (closer(&vars));
 	render_room(&vars);
 	render_sprite(&vars, vars.player);
 	mlx_hook(vars.win, DestroyNotify, StructureNotifyMask, closer, &vars);

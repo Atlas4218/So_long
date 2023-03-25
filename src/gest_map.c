@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:54:27 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/20 20:46:39 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:24:29 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -52,7 +52,7 @@ int	parse_floor_ceiling(char *line)
 
 int	fill_map(int nbcoin, char **map, int i, int j)
 {
-	if (map[i][j] == '1' || map[i][j] == 'R'
+	if (!map[i][j] || map[i][j] == '1' || map[i][j] == 'R'
 			|| map[i][j] == 'V' || map[i][j] == 'S')
 		return (0);
 	if (map[i][j] == '0')
@@ -75,7 +75,7 @@ int	solve_map(char **map, t_vars *vars)
 {
 	if (!vars || !map || !*map)
 		return (5);
-	fill_map(0, map, vars->player->y, vars->player->x);
+	fill_map(0, map, vars->player->x, vars->player->y);
 	while (*map)
 	{
 		if (strchr(*map, 'E') || strchr(*map, 'C'))

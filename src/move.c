@@ -6,57 +6,57 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:40:53 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/15 18:25:25 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/25 19:19:07 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
 int	move_sprite(t_vars *vars, t_sprite *sprite, int x, int y)
 {
-	x = x * sprite->img->width + sprite->x;
-	y = y * sprite->img->height + sprite->y;
+	x = x * sprite->img->height + sprite->x;
+	y = y * sprite->img->width + sprite->y;
 	if (!sprite || !(sprite->img) || !vars || !(vars->background))
 		return (0);
-	if (vars->map[y / sprite->img->width][x / sprite->img->height] == '1')
+	if (vars->map[x / sprite->img->height + vars->offsetx]
+		[y / sprite->img->width + vars->offsety] == '1')
 		return (0);
-	if (vars->map[sprite->y / sprite->img->width]
-		[sprite->x / sprite->img->height] == 'V')
+	if (vars->map[sprite->x / sprite->img->height + vars->offsetx]
+		[sprite->y / sprite->img->width + vars->offsety] == 'V')
 	{
-		vars->map[sprite->y / sprite->img->width]
-		[sprite->x / sprite->img->height] = 'R';
+		vars->map[sprite->x / sprite->img->height + vars->offsetx]
+		[sprite->y / sprite->img->width + vars->offsety] = 'R';
 		vars->nbcoin--;
 	}
-	if (vars->map[y / sprite->img->width][x / sprite->img->height] == 'S'
-			&& !vars->nbcoin)
+	if (vars->map[x / sprite->img->height + vars->offsetx]
+		[y / sprite->img->width + vars->offsety] == 'S'
+		&& !vars->nbcoin)
 		return (-1);
-	if (x < 0 || y < 0 || x + sprite->img->width > vars->wwidth
-		|| y + sprite->img->height > vars->wheight)
+	if (x < 0 || y < 0 || x + sprite->img->height > vars->wheight
+		|| y + sprite->img->width > vars->wwidth)
 		return (0);
 	sprite->x = x;
 	sprite->y = y;
-	render_room(vars);
-	render_sprite(vars, sprite);
-	return (1);
+	return (render_room(vars), 1);
 }
 
 int	move_up(t_vars *vars, t_sprite *sprite)
 {
-	return (move_sprite(vars, sprite, 0, -1));
+	return (move_sprite(vars, sprite, -1, 0));
 }
 
 int	move_down(t_vars *vars, t_sprite *sprite)
 {
-	return (move_sprite(vars, sprite, 0, 1));
+	return (move_sprite(vars, sprite, 1, 0));
 }
 
 int	move_left(t_vars *vars, t_sprite *sprite)
 {
 	sprite->img = vars->player_left;
-	return (move_sprite(vars, sprite, -1, 0));
+	return (move_sprite(vars, sprite, 0, -1));
 }
 
 int	move_right(t_vars *vars, t_sprite *sprite)
 {
 	sprite->img = vars->player_right;
-	return (move_sprite(vars, sprite, 1, 0));
+	return (move_sprite(vars, sprite, 0, 1));
 }

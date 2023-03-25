@@ -1,5 +1,10 @@
 player image addr = 788f0
 nplayer image addr = 7ca80
 
-coordonees du joueur demande la taille de l'ecran et l'offset
-l'offset demande la carte
+coordonees du joueur demande l'offset
+l'offset demande la carte et les dimension de la fenetre
+
+wheight = x * sheight + wheight % sheight
+wwidth = y * swidth + wwidth % swidth
+
+

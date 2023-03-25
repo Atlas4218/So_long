@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:08:29 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/17 14:33:39 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/23 20:49:55 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -55,7 +55,7 @@ typedef struct s_vars
 	int			nbplayer;
 	int			nbexit;
 	int			nbline;
-	int		lenline;
+	int			lenline;
 	t_img		*background;
 	t_img		*exit;
 	t_img		*coin;
