@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:08:29 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/23 20:49:55 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:34:56 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -73,6 +73,7 @@ int		move_right(t_vars *vars, t_sprite *sprite);
 int		render_sprite(t_vars *vars, t_sprite *sprite);
 void	render_room(t_vars *vars);
 void	get_offset(t_vars *vars);
+void	change_offset(t_vars *vars, int *x, int *y);
 int		parse_room(char *line, t_vars *vars);
 int		parse_floor_ceiling(char *line);
 int		parse_map(char **map, t_vars *vars);

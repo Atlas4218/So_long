@@ -6,10 +6,43 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 18:19:57 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/26 17:25:02 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:15:28 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
+
+int	int_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+void	change_offset(t_vars *vars, int *x, int *y)
+{
+	if (*x < 0)
+	{
+		vars->offsetx =vars->offsetx - vars->wheight / vars->x;
+		*x = vars->wheight - vars->player->img->height
+			- vars->wheight % vars->y;
+	}
+	if (*y < 0)
+	{
+		vars->offsety = vars->offsety - vars->wwidth / vars->y;
+		*y = vars->wwidth - vars->player->img->width
+			- vars->wwidth % vars->y;
+	}
+	if (*x + vars->player->img->height > vars->wheight)
+	{
+		vars->offsetx = vars->offsetx + vars->wheight / vars->x;
+		*x = 0;
+	}
+	if (*y + vars->player->img->width > vars->wwidth)
+	{
+		vars->offsety = vars->offsety + vars->wwidth / vars->y;
+		*y = 0;
+	}
+}
 
 int	player_in_window(t_vars *vars)
 {

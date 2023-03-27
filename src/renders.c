@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:25:56 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/26 13:38:05 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/27 18:07:02 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -22,8 +22,8 @@ int	render_sprite(t_vars *vars, t_sprite *sprite)
 
 void	render_elements(t_vars *vars, int offset_x, int offset_y)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (vars->map[j + offset_x] && j * vars->x < vars->wheight)

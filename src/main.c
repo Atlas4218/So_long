@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:32:48 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/26 17:27:00 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/27 20:00:30 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	clear_player(t_vars *vars)
 
 int	closer(t_vars *vars)
 {
-	printf("(Bye)> ヾ(＾ ∇ ＾). %d pas\n", vars->step);
+	printf("(Bye)> ヾ(＾ ∇ ＾).\n");
 	if (vars->map)
 		clear_map(vars->map);
 	if (vars->background)
@@ -76,10 +76,10 @@ int	handle_keyevent(int keycode, t_vars *vars)
 		if (vars->player->img)
 			move += move_right(vars, vars->player);
 	vars->step += int_abs(move);
+	if (move)
+		printf("%d\n", vars->step);
 	if (move == -1)
 		closer(vars);
-	if (vars->step)
-		printf("%d\n", vars->step);
 	return (0);
 }
 

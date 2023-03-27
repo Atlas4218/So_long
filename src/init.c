@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:02:07 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/23 20:46:00 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/27 19:58:28 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -34,19 +34,19 @@ int	init_player(t_vars *vars)
 
 	vars->player = malloc(sizeof (t_sprite));
 	if (!vars->player)
-		return (-1);
+		return (closer(vars));
 	vars->player_right = mlx_xpm_file_to_image(vars->mlx,
-			"asset/img/sprite_char.xpm", &x, &y);
+			"asset/img/right_sprite_char.xpm", &x, &y);
 	if (!vars->player_right)
-		return (-1);
+		return (closer(vars));
 	vars->player_left = mlx_xpm_file_to_image(vars->mlx,
 			"asset/img/left_sprite_char.xpm", &x, &y);
 	if (!vars->player_right)
-		return (-1);
+		return (closer(vars));
 	vars->player->img = vars->player_right;
 	get_player_coos(vars);
 	if (solve_map(vars->map, vars))
-		return (-1);
+		return (closer(vars));
 	vars->player->x = (vars->player->x - vars->offsetx)
 		* vars->player->img->height;
 	vars->player->y = (vars->player->y - vars->offsety)
@@ -59,59 +59,59 @@ int	init_map(t_vars *vars)
 {
 	vars->map = get_map(vars->mappath);
 	if (!vars->map)
-		return (-1);
+		return (closer(vars));
 	if (parse_map(vars->map, vars))
-		return (-1);
+		return (closer(vars));
 	return (0);
 }
 
 int	init_win(t_vars *vars)
 {
 	if (init_map(vars))
-		return (-1);
+		return (closer(vars));
 	vars->wwidth = int_min(vars->swidth,
 			vars->lenline * vars->background->width);
 	vars->wheight = int_min(vars->sheight,
 			vars->nbline * vars->background->height);
-	vars->wheight = 720;
-	vars->wwidth = 1080;
+	vars->offsetx = 0;
+	vars->offsety = 0;
 	if (vars->wwidth < (vars->lenline * vars->x)
 		|| vars->wheight < (vars->nbline * vars->y))
 		get_offset(vars);
 	if (init_player(vars))
-		return (-1);
+		return (closer(vars));
 	vars->win = mlx_new_window(vars->mlx, vars->wwidth, vars->wheight,
 			"So Long");
 	if (!vars->win)
-		return (-1);
+		return (closer(vars));
 	return (0);
 }
 
 int	init_vars(t_vars *vars)
 {
 	if (!vars)
-		return (-1);
+		return (closer(vars));
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
-		return (-1);
+		return (closer(vars));
 	vars->exit = mlx_xpm_file_to_image(vars->mlx,
 			"asset/img/exit.xpm", &(vars->x), &(vars->y));
 	if (!vars->exit)
-		return (-1);
+		return (closer(vars));
 	vars->coin = mlx_xpm_file_to_image(vars->mlx,
 			"asset/img/coin.xpm", &(vars->x), &(vars->y));
 	if (!vars->coin)
-		return (-1);
+		return (closer(vars));
 	vars->wall = mlx_xpm_file_to_image(vars->mlx,
 			"asset/img/wall.xpm", &(vars->x), &(vars->y));
 	if (!vars->wall)
-		return (-1);
+		return (closer(vars));
 	vars->background = mlx_xpm_file_to_image(vars->mlx,
 			"asset/img/void.xpm", &(vars->x), &(vars->y));
 	if (!vars->background)
-		return (-1);
+		return (closer(vars));
 	mlx_get_screen_size(vars->mlx, &(vars->swidth), &(vars->sheight));
 	if (!vars->swidth || !vars->sheight)
-		return (-1);
+		return (closer(vars));
 	return (init_win(vars));
 }
