@@ -9,11 +9,11 @@ BIN = bin
 SOURCE = ${SRC}/main.c\
 	 ${SRC}/move.c\
 	 ${SRC}/gest_map.c\
+	 ${SRC}/gest_offset.c\
 	 ${SRC}/get_next_line.c\
 	 ${SRC}/get_next_line_utils.c\
 	 ${SRC}/utils.c\
 	 ${SRC}/init.c\
-	 ${SRC}/center_player.c\
 	 ${SRC}/renders.c
 
 OBJECT = ${patsubst %,${BIN}/%, ${notdir ${SOURCE:.c=.o}}}

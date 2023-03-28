@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:31:01 by rastie            #+#    #+#             */
-/*   Updated: 2022/12/01 19:51:39 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:39:58 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -50,6 +50,11 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+int		ft_printf(const char *str, ...);
+size_t	print_uint(unsigned int arg);
+size_t	print_lhex(unsigned int arg);
+size_t	print_uhex(unsigned int arg);
+size_t	print_addr(unsigned long int arg);
 typedef struct s_list
 {
 	void			*content;

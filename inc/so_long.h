@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:08:29 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/27 16:34:56 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:49:18 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -18,17 +18,16 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 //Includes standards
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
 # include "get_next_line.h"
 # include "libft.h"
-# define RESOLUTIONERROR "Error\nMap cannot be solved\n"
-# define WALLERROR "Error\nThe map isn't closed by walls\n"
-# define FORMERROR "Error\nThe map isn't rectangular\n"
-# define NUMBERERROR "Error\nVerify the number of each element\n"
-# define CHARACTERERROR "Error\nNon recognized character in the map\n"
+# define RESER "Error\nMap cannot be solved\n"
+# define WALLER "Error\nThe map isn't closed by walls: line %d\n"
+# define FORMER "Error\nThe map isn't rectangular: line %d\n"
+# define NBER "Error\nWrong  number of element: %d coin, %d exit, %d player\n"
+# define CHARER "Error\nNon recognized character in the map: %c\n"
 
 typedef struct s_sprite
 {

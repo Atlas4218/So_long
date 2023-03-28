@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:54:27 by rastie            #+#    #+#             */
-/*   Updated: 2023/03/23 12:24:29 by rastie           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:47:44 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -21,7 +21,7 @@ int	parse_room(char *line, t_vars *vars)
 	int	i;
 
 	i = 0;
-	lenline = strlen(line);
+	lenline = ft_strlen(line);
 	while (line[i])
 	{
 		if (line[i] == 'C')
@@ -31,11 +31,11 @@ int	parse_room(char *line, t_vars *vars)
 		else if (line[i] == 'P')
 			vars->nbplayer++;
 		else if (line[i] != '0' && line[i] != '1')
-			return (printf(CHARACTERERROR));
+			return (ft_printf(CHARER, line[i]));
 		i++;
 	}
 	if (!(line[0] == '1' && line[lenline - 1] == '1'))
-		return (printf(WALLERROR));
+		return (ft_printf(WALLER, vars->nbline));
 	return (0);
 }
 
@@ -78,8 +78,8 @@ int	solve_map(char **map, t_vars *vars)
 	fill_map(0, map, vars->player->x, vars->player->y);
 	while (*map)
 	{
-		if (strchr(*map, 'E') || strchr(*map, 'C'))
-			return (printf(RESOLUTIONERROR));
+		if (ft_strchr(*map, 'E') || ft_strchr(*map, 'C'))
+			return (ft_printf(RESER));
 		map++;
 	}
 	return (0);
@@ -93,20 +93,21 @@ int	parse_map(char **map, t_vars *vars)
 	vars->nbplayer = 0;
 	vars->nbexit = 0;
 	vars->nbline = 0;
-	vars->lenline = strlen(map[vars->nbline]);
+	vars->lenline = ft_strlen(map[vars->nbline]);
 	if (parse_floor_ceiling(map[vars->nbline++]))
-		return (printf(WALLERROR));
+		return (ft_printf(WALLER, vars->nbline));
 	while (map[vars->nbline])
 	{
 		if (vars->lenline != (int)strlen(map[vars->nbline]))
-			return (printf(FORMERROR));
+			return (ft_printf(FORMER, vars->nbline));
 		if (parse_room(map[vars->nbline], vars))
 			return (4);
 		vars->nbline++;
 	}
 	if (parse_floor_ceiling(map[vars->nbline - 1]))
-		return (printf(WALLERROR));
+		return (ft_printf(WALLER, vars->nbline));
 	if (!vars->nbcoin || vars->nbplayer != 1 || vars->nbexit != 1)
-		return (printf(NUMBERERROR));
+		return (ft_printf(NBER, vars->nbcoin,
+			vars->nbexit, vars->nbplayer));
 	return (0);
 }
